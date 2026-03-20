@@ -68,10 +68,13 @@
   /* ─ floating deco shapes ─ */
   .deco{position:fixed;border:var(--bw);z-index:5;pointer-events:none;}
   .deco.star{
-    width:48px;height:48px;
-    background:var(--p2);
-    clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
-    top:10%;left:5%;animation:bob 7s ease-in-out infinite;
+    width: 52px;
+    height: 52px;
+    top: 10%;
+    left: 5%;
+    animation: bob 7s ease-in-out infinite;
+    background: none;
+    border: none;
   }
   .deco.blob-shape{
     width:44px;height:44px;
@@ -220,6 +223,13 @@
     background:var(--acc);padding:10px 30px;font-size:0.82rem;
     transition:transform 0.12s,box-shadow 0.12s,background 1.4s ease;
   }
+  .skip-icon {
+    font-size: 1.8em;
+    line-height: 0.5;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 2px;
+  }
 
   /* ─ mood pills ─ */
   .mood{width:100%;display:flex;gap:8px;justify-content:center;}
@@ -273,24 +283,22 @@
 </head>
 <body id="body">
 
-<!-- blobs -->
 <div class="blobs">
   <div class="blob blob1" id="b1" style="background:#ffb89a"></div>
   <div class="blob blob2" id="b2" style="background:#ffd99e"></div>
   <div class="blob blob3" id="b3" style="background:#c9f0d0"></div>
 </div>
 
-<!-- 3-d WebGL -->
 <canvas id="bg-canvas"></canvas>
 
-<!-- deco shapes -->
-<div class="deco star"></div>
+<svg class="deco star" viewBox="0 0 100 100">
+  <polygon points="50,8 61,35 90,35 68,54 75,85 50,68 25,85 32,54 10,35 39,35" fill="var(--p2)" stroke="var(--ink)" stroke-width="6" stroke-linejoin="round" />
+</svg>
 <div class="deco blob-shape"></div>
 <div class="deco squig"></div>
 <div class="deco diamond"></div>
 <div class="deco tri"></div>
 
-<!-- ══ CARD ══ -->
 <div class="card" id="card">
 
   <div class="topbar">
@@ -319,7 +327,7 @@
   <div class="btn-row">
     <button class="btn" onclick="resetAll()">↺ Reset</button>
     <button class="btn btn-primary" id="bstart" onclick="handleClick()">▶ Start</button>
-    <button class="btn" onclick="skipPhase()">Skip ›</button>
+    <button class="btn" onclick="skipPhase()">Skip <span class="skip-icon">›</span></button>
   </div>
 
   <div class="mood">
@@ -330,7 +338,6 @@
 
 </div>
 
-<!-- done overlay -->
 <div class="done-ov" id="done-ov">
   <div class="done-card">
     <div class="done-emoji">🌸</div>
